@@ -56,13 +56,14 @@
             box-shadow: 5px 5px 0px cyan, 10px 10px 0px magenta, 15px 15px 0px yellow;
         }
 
-        #main-card {
+        /* Animation class for the inner card content */
+        #card-content {
             opacity: 0;
             transform: scale(0.95);
             transition: all 1s ease-in-out;
         }
 
-        #main-card.visible {
+        #card-content.visible {
             opacity: 1;
             transform: scale(1);
         }
@@ -83,7 +84,7 @@
 <body class="h-screen w-screen flex items-center justify-center relative">
 
     <!-- TERMINAL VIEW -->
-    <div id="terminal" class="w-full max-w-3xl p-6 bg-black rounded-lg border border-gray-800 shadow-2xl z-50">
+    <div id="terminal" class="w-full max-w-3xl p-6 bg-black rounded-lg border border-gray-800 shadow-2xl z-50 mx-4">
         <div class="flex items-center gap-2 mb-4 border-b border-gray-800 pb-2">
             <div class="w-3 h-3 rounded-full bg-red-500"></div>
             <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -96,58 +97,63 @@
     </div>
 
     <!-- MAIN CARD VIEW -->
-    <div id="main-card" class="absolute inset-0 flex items-center justify-center bg-gray-100 z-40 hidden">
-        <canvas id="confetti" class="absolute inset-0 pointer-events-none"></canvas>
+    <!-- Changed to fixed inset-0 with overflow-y-auto to allow scrolling on mobile -->
+    <div id="main-card" class="fixed inset-0 z-40 hidden overflow-y-auto bg-gray-100">
+        <!-- Canvas fixed in background -->
+        <canvas id="confetti" class="fixed inset-0 pointer-events-none"></canvas>
         
-        <div class="bg-white p-8 md:p-12 rounded-xl shadow-2xl max-w-2xl w-full mx-4 border border-gray-200 cmyk-shadow relative overflow-hidden">
-            <!-- CMYK Header Line -->
-            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-yellow-400"></div>
+        <!-- Flex container to center card but allow scrolling if taller than screen -->
+        <div class="min-h-full flex items-center justify-center p-4">
+            <div id="card-content" class="bg-white p-8 md:p-12 rounded-xl shadow-2xl max-w-2xl w-full border border-gray-200 cmyk-shadow relative overflow-hidden my-4">
+                <!-- CMYK Header Line -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-yellow-400"></div>
 
-            <div class="text-center space-y-6">
-                <div class="inline-block bg-black text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-4">
-                    Celebration Protocol
-                </div>
-                
-                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight">
-                    HAPPY <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">BIRTHDAY</span>
-                </h1>
-                
-                <h2 class="text-xl md:text-2xl font-semibold text-gray-700">Mr. Aditya Singh <span class="text-base text-gray-500 font-normal block md:inline md:ml-2">| Managing Director</span></h2>
-                
-                <div class="border-t border-b border-gray-100 py-6 my-6">
-                    <p class="text-gray-600 text-lg leading-relaxed italic">
-                        "Single nothing, together a lot."
-                    </p>
-                    <p class="text-gray-500 text-sm mt-2">
-                        - Your vision unites us all.
-                    </p>
-                </div>
-
-                <div class="space-y-4 text-left bg-gray-50 p-6 rounded-lg border-l-4 border-blue-500">
-                    <p class="text-gray-700 leading-relaxed">
-                        <span class="font-bold text-blue-600">To Aditya Sir:</span><br>
-                        In just the 2.5 months I've been part of PCIL, your vision has been truly inspiring. As we work on upgrading the website and integrating new AI tools, I am excited to contribute to the digital transformation you are leading. Thank you for your trust and guidance.
-                    </p>
-                </div>
-
-                <div class="mt-8 pt-4 flex justify-between items-end text-sm text-gray-400 font-mono">
-                    <div>
-                        STATUS: <span class="text-green-500 font-bold">CELEBRATION_MODE</span><br>
-                        UPTIME: <span class="text-black">365 DAYS</span>
+                <div class="text-center space-y-6">
+                    <div class="inline-block bg-black text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-4">
+                        Celebration Protocol
                     </div>
-                    <div class="text-right">
-                        Deployed by:<br>
-                        <span class="text-black font-bold">Manan Mongia - Project Manager</span>
+                    
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight">
+                        HAPPY <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">BIRTHDAY</span>
+                    </h1>
+                    
+                    <h2 class="text-xl md:text-2xl font-semibold text-gray-700">Mr. Aditya Singh <span class="text-base text-gray-500 font-normal block md:inline md:ml-2">| Managing Director</span></h2>
+                    
+                    <div class="border-t border-b border-gray-100 py-6 my-6">
+                        <p class="text-gray-600 text-lg leading-relaxed italic">
+                            "Single nothing, together a lot."
+                        </p>
+                        <p class="text-gray-500 text-sm mt-2">
+                            - Your vision unites us all.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 text-left bg-gray-50 p-6 rounded-lg border-l-4 border-blue-500">
+                        <p class="text-gray-700 leading-relaxed">
+                            <span class="font-bold text-blue-600">To Aditya Sir:</span><br>
+                            In just the 2.5 months I've been part of PCIL, your vision has been truly inspiring. As we work on upgrading the website and integrating new AI tools, I am excited to contribute to the digital transformation you are leading. Thank you for your trust and guidance.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 pt-4 flex justify-between items-end text-sm text-gray-400 font-mono">
+                        <div>
+                            STATUS: <span class="text-green-500 font-bold">CELEBRATION_MODE</span><br>
+                            UPTIME: <span class="text-black">365 DAYS</span>
+                        </div>
+                        <div class="text-right">
+                            Deployed by:<br>
+                            <span class="text-black font-bold">Manan Mongia - Project Manager</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Decorative CMYK Dots -->
-            <div class="absolute bottom-4 left-4 flex gap-1">
-                <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
-                <div class="w-2 h-2 rounded-full bg-fuchsia-400"></div>
-                <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
-                <div class="w-2 h-2 rounded-full bg-black"></div>
+                
+                <!-- Decorative CMYK Dots -->
+                <div class="absolute bottom-4 left-4 flex gap-1">
+                    <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+                    <div class="w-2 h-2 rounded-full bg-fuchsia-400"></div>
+                    <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+                    <div class="w-2 h-2 rounded-full bg-black"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -156,6 +162,7 @@
         // Terminal Logic
         const terminalContent = document.getElementById('terminal-content');
         const mainCard = document.getElementById('main-card');
+        const cardContent = document.getElementById('card-content'); // New reference for animation
         const terminal = document.getElementById('terminal');
 
         const logs = [
@@ -195,9 +202,9 @@
             setTimeout(() => {
                 terminal.style.display = 'none';
                 mainCard.classList.remove('hidden');
-                // Trigger reflow
-                void mainCard.offsetWidth;
-                mainCard.classList.add('visible');
+                // Trigger reflow for animation on the inner card
+                void cardContent.offsetWidth;
+                cardContent.classList.add('visible');
                 startConfetti();
             }, 500);
         }
@@ -235,6 +242,12 @@
                 requestAnimationFrame(animate);
             }
             animate();
+            
+            // Handle Resize for Canvas
+            window.addEventListener('resize', () => {
+                 canvas.width = window.innerWidth;
+                 canvas.height = window.innerHeight;
+            });
         }
 
         window.onload = runTerminal;
