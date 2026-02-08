@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- PRIMARY METADATA -->
+    <title>Project: B-DAY | Mr. Aditya Singh</title>
+    <meta name="description" content="A digital birthday tribute to Mr. Aditya Singh, MD of Printers Club of India Limited. Deployed by IT Dept.">
+    <meta name="author" content="Project Manager - IT">
+
+    <!-- OPEN GRAPH / WHATSAPP PREVIEW -->
+    <meta property="og:title" content="🚀 Project: B-DAY | Mr. Aditya Singh">
+    <meta property="og:description" content="Initializing Birthday Protocol... Click to view the digital deployment for our MD.">
+    <meta property="og:type" content="website">
+    <!-- REPLACE 'LINK_TO_IMAGE' below with a direct link to a screenshot (e.g., raw github user content link) for a photo preview on WhatsApp -->
+    <meta property="og:image" content="https://ui-avatars.com/api/?name=Aditya+Singh&background=0D8ABC&color=fff&size=512"> 
+    
+    <!-- THEME COLORS -->
+    <meta name="theme-color" content="#0f172a">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Poppins:wght@400;600;800&display=swap');
+
+        body {
+            background-color: #0f172a;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Terminal Styles */
+        #terminal {
+            font-family: 'JetBrains Mono', monospace;
+            color: #00ff41;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+        }
+
+        .cursor::after {
+            content: '▋';
+            animation: blink 1s step-start infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Card Styles */
+        .cmyk-border {
+            background: linear-gradient(to right, cyan 25%, magenta 25% 50%, yellow 50% 75%, black 75%);
+            height: 8px;
+            width: 100%;
+        }
+
+        .cmyk-shadow {
+            box-shadow: 5px 5px 0px cyan, 10px 10px 0px magenta, 15px 15px 0px yellow;
+        }
+
+        #main-card {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 1s ease-in-out;
+        }
+
+        #main-card.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .printing-text {
+            border-right: 3px solid black;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blink-caret .75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: black; }
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex items-center justify-center relative">
+
+    <!-- TERMINAL VIEW -->
+    <div id="terminal" class="w-full max-w-3xl p-6 bg-black rounded-lg border border-gray-800 shadow-2xl z-50">
+        <div class="flex items-center gap-2 mb-4 border-b border-gray-800 pb-2">
+            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            <span class="text-gray-500 text-xs ml-2">root@pcil-server:~</span>
+        </div>
+        <div id="terminal-content" class="text-sm md:text-base space-y-1 h-64 overflow-y-auto">
+            <!-- Logs will be injected here -->
+        </div>
+    </div>
+
+    <!-- MAIN CARD VIEW -->
+    <div id="main-card" class="absolute inset-0 flex items-center justify-center bg-gray-100 z-40 hidden">
+        <canvas id="confetti" class="absolute inset-0 pointer-events-none"></canvas>
+        
+        <div class="bg-white p-8 md:p-12 rounded-xl shadow-2xl max-w-2xl w-full mx-4 border border-gray-200 cmyk-shadow relative overflow-hidden">
+            <!-- CMYK Header Line -->
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-yellow-400"></div>
+
+            <div class="text-center space-y-6">
+                <div class="inline-block bg-black text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-4">
+                    Managing Director Protocol
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight">
+                    HAPPY <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">BIRTHDAY</span>
+                </h1>
+                
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-700">Mr. Aditya Singh <span class="text-base text-gray-500 font-normal block md:inline md:ml-2">| Managing Director</span></h2>
+                
+                <div class="border-t border-b border-gray-100 py-6 my-6">
+                    <p class="text-gray-600 text-lg leading-relaxed italic">
+                        "Single nothing, together a lot."
+                    </p>
+                    <p class="text-gray-500 text-sm mt-2">
+                        - Your vision unites us all.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-left bg-gray-50 p-6 rounded-lg border-l-4 border-blue-500">
+                    <p class="text-gray-700 leading-relaxed">
+                        <span class="font-bold text-blue-600">To Aditya Sir:</span><br>
+                        In just the 2.5 months I've been part of PCIL, your vision has been truly inspiring. As we work on upgrading the website and integrating new AI tools, I am excited to contribute to the digital transformation you are leading. Thank you for your trust and guidance.
+                    </p>
+                </div>
+
+                <div class="mt-8 pt-4 flex justify-between items-end text-sm text-gray-400 font-mono">
+                    <div>
+                        STATUS: <span class="text-green-500 font-bold">CELEBRATION_MODE</span><br>
+                        UPTIME: <span class="text-black">365 DAYS</span>
+                    </div>
+                    <div class="text-right">
+                        Deployed by:<br>
+                        <span class="text-black font-bold">Manan Mongia - Project Manager</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decorative CMYK Dots -->
+            <div class="absolute bottom-4 left-4 flex gap-1">
+                <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+                <div class="w-2 h-2 rounded-full bg-fuchsia-400"></div>
+                <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+                <div class="w-2 h-2 rounded-full bg-black"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Terminal Logic
+        const terminalContent = document.getElementById('terminal-content');
+        const mainCard = document.getElementById('main-card');
+        const terminal = document.getElementById('terminal');
+
+        const logs = [
+            { text: "> Initializing Birthday Protocol v2024...", delay: 500 },
+            { text: "> Connecting to Printers Club of India Secure Network...", delay: 800 },
+            { text: "> Verifying User Identity: ADITYA_SINGH (MD)", delay: 600 },
+            { text: "> Access Granted. Level: VISIONARY.", delay: 800 },
+            { text: "> Checking System Modules...", delay: 400 },
+            { text: "> [OK] Defence Discipline Module", delay: 300 },
+            { text: "> [OK] Komori Press Integration", delay: 300 },
+            { text: "> [OK] Website Upgrade Protocol", delay: 300 },
+            { text: "> [OK] AI Tools Integration", delay: 300 },
+            { text: "> Syncing Motto: 'Single nothing, together a lot'...", delay: 1000 },
+            { text: "> Compiling Wishes from IT Department...", delay: 800 },
+            { text: "> 100% Complete.", delay: 500 },
+            { text: "> EXECUTING LAUNCH SEQUENCE...", delay: 1000 }
+        ];
+
+        async function runTerminal() {
+            for (let log of logs) {
+                const p = document.createElement('div');
+                p.className = 'cursor';
+                p.textContent = log.text;
+                terminalContent.appendChild(p);
+                
+                // Scroll to bottom
+                terminalContent.scrollTop = terminalContent.scrollHeight;
+                
+                // Remove cursor from previous line
+                const prev = p.previousElementSibling;
+                if(prev) prev.classList.remove('cursor');
+
+                await new Promise(r => setTimeout(r, log.delay));
+            }
+            
+            // Transition
+            setTimeout(() => {
+                terminal.style.display = 'none';
+                mainCard.classList.remove('hidden');
+                // Trigger reflow
+                void mainCard.offsetWidth;
+                mainCard.classList.add('visible');
+                startConfetti();
+            }, 500);
+        }
+
+        // Confetti Logic
+        function startConfetti() {
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const colors = ['#00FFFF', '#FF00FF', '#FFFF00', '#000000']; // CMYK
+
+            for (let i = 0; i < 150; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    size: Math.random() * 5 + 2,
+                    speed: Math.random() * 3 + 2,
+                    angle: Math.random() * 2 * Math.PI
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.y += p.speed;
+                    p.x += Math.sin(p.angle) * 2;
+                    if (p.y > canvas.height) p.y = 0;
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(p.x, p.y, p.size, p.size);
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        window.onload = runTerminal;
+    </script>
+</body>
+</html>
